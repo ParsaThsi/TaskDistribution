@@ -29,6 +29,12 @@ public class TaskController {
         return new ResponseEntity<>(taskMapper.toDto(createdTask), HttpStatus.CREATED);
     }
 
+    @GetMapping
+    public ResponseEntity<List<TaskResponseDto>> getAllTasks() {
+        List<Task> tasks = taskService.getAllTasks();
+        return ResponseEntity.ok(taskMapper.toDtoList(tasks));
+    }
+
     @GetMapping("/project/{projectId}")
     public ResponseEntity<List<TaskResponseDto>> getTasksByProjectId(@PathVariable Long projectId) {
         List<Task> tasks = taskService.getTasksByProjectId(projectId);

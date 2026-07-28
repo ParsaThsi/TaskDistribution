@@ -47,6 +47,11 @@ public class TaskService {
     }
 
     @Transactional(readOnly = true)
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
     public List<Task> getTasksByProjectId(Long projectId) {
         return taskRepository.findByProjectId(projectId);
     }
